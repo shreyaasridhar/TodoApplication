@@ -6,8 +6,14 @@
     <title>TodoApplication</title>
   </head>
   <body>
-    {% for d in data %}
-    <li>{{d.description}}</li>
-    {% endfor %}
+    <form id="form" action="/todos/create" method="POST">
+      <input type="text" name="description" id="description" />
+      <input type="submit" id="submit" value="Create" />
+    </form>
+    <ul id="todos">
+      {% for d in data %}
+      <li>{{d.description}}</li>
+      {% endfor %}
+    </ul>
   </body>
 </html>
