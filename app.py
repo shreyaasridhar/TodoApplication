@@ -37,7 +37,10 @@ def index():
 
 @app.route('/lists/<listid>')
 def get_list_todos(listid):
-    return render_template('index.html', data=Todo.query.filter_by(list_id=listid).order_by('id').all())
+    return render_template('index.html',
+                           lists=TodoList.query.all(),
+                           active_list=TodoList.query.get(listid),
+                           todos=Todo.query.filter_by(list_id=listid).order_by('id').all())
 
 
 @app.route('/todos/create', methods=['POST'])
