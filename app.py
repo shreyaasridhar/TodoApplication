@@ -32,7 +32,12 @@ class TodoList(db.Model):
 
 @app.route('/')
 def index():
-    return render_template('index.html', data=Todo.query.order_by('id').all())
+    return redirect(url_for('get_list_todos', listid=1))
+
+
+@app.route('/lists/<listid>')
+def get_list_todos(listid):
+    return render_template('index.html', data=Todo.query.filter_by(list_id=listid).order_by('id').all())
 
 
 @app.route('/todos/create', methods=['POST'])
